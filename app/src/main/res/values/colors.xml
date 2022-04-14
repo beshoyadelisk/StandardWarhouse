@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorMain">#38236e</color>
+    <color name="colorMainDark">#240b36</color>
+    <color name="colorMainLight">#674c9d</color>
+
+    <color name="colorSecondary">#c31432</color>
+    <color name="colorSecondaryDark">#8b000c</color>
+    <color name="colorSecondaryLight">#fc545b</color>
+
+    <color name="accentColor">#4190a3</color>
+
+    <color name="progressError">#b22222</color>
+    <color name="yellow">#FAE413</color>
+</resources>
