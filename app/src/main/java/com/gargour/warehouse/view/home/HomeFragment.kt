@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.gargour.warehouse.databinding.FragmentHomeBinding
 import com.gargour.warehouse.util.ViewExt.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,14 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.scrollLayout.apply {
+            receiveLinear.setOnClickListener { }
+            issueLinear.setOnClickListener { }
+            transferLinear.setOnClickListener { }
+            returnsLinear.setOnClickListener { }
+            settingsLinear.setOnClickListener { }
+            logOutLinear.setOnClickListener { }
+        }
     }
 
     private fun showError(message: String) {

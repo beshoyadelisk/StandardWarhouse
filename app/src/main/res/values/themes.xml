@@ -38,6 +38,15 @@
         <item name="android:focusable">true</item>
     </style>
 
+    <style name="headTextView" parent="TextAppearance.MaterialComponents.Headline5" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="mainTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

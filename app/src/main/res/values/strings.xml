@@ -18,5 +18,6 @@
     <string name="log_out">Logout</string>
     <string name="powered_by_gargour_technologies">Powered by gargour technologies</string>
     <string name="export">Export</string>
+    <string name="warehouse">Warehouse</string>
 
 </resources>
