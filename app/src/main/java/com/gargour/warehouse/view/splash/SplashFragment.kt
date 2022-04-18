@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.gargour.warehouse.R
 import com.gargour.warehouse.util.RequestPermissionHandler
 import com.gargour.warehouse.util.RequestPermissionHandler.requestPermission
+import com.gargour.warehouse.util.ViewExt.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,6 +49,7 @@ class SplashFragment : Fragment(), RequestPermissionHandler.RequestPermissionLis
     }
 
     override fun onFailed() {
+        showToast("Failed to get permissions")
         requireActivity().finishAffinity()
     }
 

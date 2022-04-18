@@ -11,7 +11,7 @@
     <color name="colorSecondaryLight">#fc545b</color>
 
     <color name="accentColor">#4190a3</color>
-
+    <color name="hintColor">#757575</color>
     <color name="progressError">#b22222</color>
     <color name="yellow">#FAE413</color>
 </resources>

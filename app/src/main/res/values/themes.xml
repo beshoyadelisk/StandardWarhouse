@@ -23,7 +23,6 @@
     <style name="mainImageView">
         <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">60dp</item>
-        <!--        <item name="android:background">@color/colorSecondary</item>-->
         <item name="android:tintMode">multiply</item>
         <item name="android:padding">16dp</item>
         <item name="tint">@color/white</item>

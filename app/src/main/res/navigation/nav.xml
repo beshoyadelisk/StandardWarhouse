@@ -38,5 +38,18 @@
         android:id="@+id/homeFragment"
         android:name="com.gargour.warehouse.view.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_destinationFragment"
+            app:destination="@id/destinationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/destinationFragment"
+        android:name="com.gargour.warehouse.view.destination.DestinationFragment"
+        android:label="fragment_destination"
+        tools:layout="@layout/fragment_destination" >
+        <argument
+            android:name="destinationArg"
+            app:argType="com.gargour.warehouse.domain.model.Destination" />
+    </fragment>
 </navigation>

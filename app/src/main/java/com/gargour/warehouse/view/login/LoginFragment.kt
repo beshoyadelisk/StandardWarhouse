@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.gargour.warehouse.WarehouseApp
 import com.gargour.warehouse.databinding.FragmentLoginBinding
 import com.gargour.warehouse.domain.model.User
@@ -14,15 +15,16 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var binding: FragmentLoginBinding
     private val viewModel: LoginViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         initObservers()
 
         return binding.root
@@ -36,8 +38,8 @@ class LoginFragment : Fragment() {
 
     private fun userObserver(result: User) {
         WarehouseApp.user = result
-        //move to home fragment
-//        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+//        move to home fragment
+        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
     }
 
     private fun loadingObserver(status: Int) {
@@ -59,6 +61,9 @@ class LoginFragment : Fragment() {
         binding.tvError.text = error
 
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }

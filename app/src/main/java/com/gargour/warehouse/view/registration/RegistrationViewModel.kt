@@ -61,9 +61,9 @@ class RegistrationViewModel @Inject constructor(
                                 _loading.postValue(response.data as Int)
                             }
                             is Response.Success -> {
-//                                _actionResponse.postValue(
-//                                    RegistrationFragmentDirections.actionRegistrationFragmentToHomeFragment()
-//                                )
+                                _actionResponse.postValue(
+                                    RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+                                )
                             }
                         }
                     }

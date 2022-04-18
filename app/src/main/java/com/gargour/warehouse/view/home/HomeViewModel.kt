@@ -1,6 +1,5 @@
 package com.gargour.warehouse.view.home
 
-import android.content.Intent
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

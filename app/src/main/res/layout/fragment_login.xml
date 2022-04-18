@@ -23,19 +23,6 @@
         app:layout_constraintVertical_bias="0.13"
         app:srcCompat="@drawable/warehouse" />
 
-    <TextView
-        android:id="@+id/tvError"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textAlignment="center"
-        android:textColor="@color/progressError"
-        android:textSize="20sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:text="Error text here" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView2"
@@ -64,6 +51,19 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/welcome" />
 
+            <TextView
+                android:id="@+id/tvError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textAlignment="center"
+                android:textColor="@color/progressError"
+                android:textSize="18sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                tools:text="Error text here" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etUsername"
@@ -120,7 +120,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
@@ -129,10 +129,11 @@
         android:textSize="18sp"
         app:backgroundTint="@color/white"
         app:cornerRadius="10dp"
+        app:elevation="20dp"
         app:icon="@drawable/ic_log_in"
         app:iconGravity="textEnd"
         app:iconSize="30dp"
-        app:iconTintMode="multiply"
+        app:iconTint="@color/colorSecondary"
         app:layout_constraintEnd_toEndOf="@+id/materialCardView2"
         app:layout_constraintStart_toStartOf="@+id/materialCardView2"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />

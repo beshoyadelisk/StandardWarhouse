@@ -4,8 +4,16 @@ import android.app.Application
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.gargour.warehouse.WarehouseApp
 import com.gargour.warehouse.data.data_source.WarehouseDb
+import com.gargour.warehouse.data.repository.CustomerRepositoryImpl
+import com.gargour.warehouse.data.repository.SupplierRepositoryImpl
+import com.gargour.warehouse.data.repository.UserRepositoryImpl
+import com.gargour.warehouse.data.repository.WarehouseRepositoryImpl
+import com.gargour.warehouse.domain.repository.CustomerRepository
+import com.gargour.warehouse.domain.repository.SupplierRepository
+import com.gargour.warehouse.domain.repository.UserRepository
+import com.gargour.warehouse.domain.repository.WarehouseRepository
+import com.gargour.warehouse.domain.use_case.destination.DestinationUseCase
 import com.gargour.warehouse.util.DispatcherProvider
 import dagger.Module
 import dagger.Provides
@@ -50,4 +58,38 @@ class AppModule {
         override val unconfined: CoroutineDispatcher
             get() = Dispatchers.Unconfined
     }
+
+    @Provides
+    @Singleton
+    fun providesCustomerRepository(db: WarehouseDb): CustomerRepository {
+        return CustomerRepositoryImpl(db.customerDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesSupplierRepository(db: WarehouseDb): SupplierRepository {
+        return SupplierRepositoryImpl(db.supplierDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesWarehouseRepository(db: WarehouseDb): WarehouseRepository {
+        return WarehouseRepositoryImpl(db.warehouseDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesDestinationUseCases(
+        customerRepository: CustomerRepository,
+        supplierRepository: SupplierRepository,
+        warehouseRepository: WarehouseRepository
+    ): DestinationUseCase {
+        return DestinationUseCase(
+            customerRepository,
+            supplierRepository,
+            warehouseRepository
+        )
+    }
+
+
 }

@@ -20,9 +20,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
 class RegistrationFragment : Fragment() {
+    private var _binding: FragmentRegistrationBinding? = null
+    private val binding get() = _binding!!
 
-
-    private lateinit var binding: FragmentRegistrationBinding
     private val viewModel: RegistrationViewModel by viewModels()
     private lateinit var telephonyManager: TelephonyManager
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class RegistrationFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentRegistrationBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
         initObservers()
         val deviceId = try {
             telephonyManager.deviceId
@@ -98,5 +98,10 @@ class RegistrationFragment : Fragment() {
         binding.btnCancel.setOnClickListener {
             requireActivity().finishAffinity()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
