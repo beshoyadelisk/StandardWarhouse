@@ -5,7 +5,7 @@ import com.gargour.warehouse.domain.repository.UserRepository
 
 class InsertUser(private val repository: UserRepository) {
     suspend operator fun invoke(user: User){
-        repository.insertUser(user)
+        repository.insert(user)
     }
 
 }

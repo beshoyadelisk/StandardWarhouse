@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.Flow
 
 class RegistrationRepositoryImpl(private val dao: RegistrationDao) : RegistrationRepository {
     override suspend fun insertReg(registration: Registration): Long {
-        return dao.insertReg(registration)
+        return dao.insert(registration)
     }
 
     override suspend fun removeReg(registration: Registration) {
-        dao.removeReg(registration)
+        dao.delete(registration)
     }
 
     override fun getReg(serial: String): Flow<Registration> {

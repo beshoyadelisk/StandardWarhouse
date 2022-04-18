@@ -10,7 +10,7 @@ class GetUser(private val repository: UserRepository) {
     operator fun invoke(userName: String, password: String) = flow<Response<Any>> {
         try {
             emit(Response.Loading(View.VISIBLE))
-            repository.getUser(userName).collect { user ->
+            repository.get(userName).collect { user ->
                 if (user != null) {
                     if (user.password != password)
                         emit(Response.Error("Wrong password!"))

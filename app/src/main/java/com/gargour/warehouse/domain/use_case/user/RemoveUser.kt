@@ -5,6 +5,6 @@ import com.gargour.warehouse.domain.repository.UserRepository
 
 class RemoveUser(private val userRepository: UserRepository) {
     suspend operator fun invoke(user: User) {
-        userRepository.removeUser(user)
+        userRepository.delete(user)
     }
 }

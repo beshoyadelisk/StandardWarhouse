@@ -17,6 +17,7 @@ import com.gargour.warehouse.databinding.FragmentRegistrationBinding
 import com.gargour.warehouse.util.ViewExt.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class RegistrationFragment : Fragment() {
 

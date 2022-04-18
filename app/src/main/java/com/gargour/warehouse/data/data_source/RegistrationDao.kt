@@ -9,13 +9,7 @@ import com.gargour.warehouse.domain.model.Registration
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface RegistrationDao {
-    @Insert(onConflict = REPLACE)
-    suspend fun insertReg(registration: Registration): Long
-
-    @Delete
-    suspend fun removeReg(registration: Registration)
-
+interface RegistrationDao : IDao<Registration> {
     @Query("SELECT * FROM registration WHERE serial = :serial")
     fun getReg(serial: String): Flow<Registration>
 }

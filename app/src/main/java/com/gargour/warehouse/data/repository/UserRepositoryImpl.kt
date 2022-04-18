@@ -6,15 +6,15 @@ import com.gargour.warehouse.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 
 class UserRepositoryImpl(private val dao: UserDao) : UserRepository {
-    override suspend fun insertUser(user: User) {
-        dao.insertUser(user)
+    override suspend fun insert(user: User) {
+        dao.insert(user)
     }
 
-    override suspend fun removeUser(user: User) {
-        dao.removeUser(user)
+    override suspend fun delete(user: User) {
+        dao.delete(user)
     }
 
-    override fun getUser(username: String): Flow<User?> {
-        return dao.getUser(username)
+    override suspend fun get(username: String): Flow<User?> {
+        return dao.get(username)
     }
 }
