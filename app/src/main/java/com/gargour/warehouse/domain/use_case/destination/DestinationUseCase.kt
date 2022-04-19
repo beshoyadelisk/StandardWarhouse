@@ -2,7 +2,7 @@ package com.gargour.warehouse.domain.use_case.destination
 
 import android.view.View
 import com.gargour.warehouse.data.Response
-import com.gargour.warehouse.domain.model.Destination
+import com.gargour.warehouse.domain.model.OrderType
 import com.gargour.warehouse.domain.repository.CustomerRepository
 import com.gargour.warehouse.domain.repository.SupplierRepository
 import com.gargour.warehouse.domain.repository.WarehouseRepository
@@ -15,18 +15,13 @@ class DestinationUseCase(
     private val supplierRepository: SupplierRepository,
     private val warehouseRepository: WarehouseRepository
 ) {
-    operator fun invoke(destination: Destination) = flow<Response<Any>> {
+    operator fun invoke(type: OrderType) = flow<Response<Any>> {
         emit(Response.Loading(View.VISIBLE))
-        when (destination) {
-            is Destination.CustomerDestination -> {
-                emit(Response.Success(customerRepository.getList()))
-            }
-            is Destination.SupplierDestination -> {
-                emit(Response.Success(supplierRepository.getList()))
-            }
-            is Destination.WarehouseDestination -> {
-                emit(Response.Success(warehouseRepository.getList()))
-            }
+        when (type) {
+            OrderType.MainToWarehouseTransfer,
+            OrderType.WarehouseToMainTransfer ->  emit(Response.Success(warehouseRepository.getList()))
+            OrderType.Receive, OrderType.WarehouseToSupplierReturn -> emit(Response.Success(supplierRepository.getList()))
+            OrderType.Issue, OrderType.CustomerToWarehouseReturn -> emit(Response.Success(customerRepository.getList()))
         }
     }.catch { emit(Response.Error(it.message ?: "Exception")) }
         .onCompletion { emit(Response.Loading(View.GONE)) }

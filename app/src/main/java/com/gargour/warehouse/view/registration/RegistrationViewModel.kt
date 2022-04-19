@@ -1,5 +1,6 @@
 package com.gargour.warehouse.view.registration
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -45,6 +46,11 @@ class RegistrationViewModel @Inject constructor(
             if (imeiString.isNotEmpty() && serialString.isNotEmpty() && userRegCode.isNotEmpty()) {
                 val orgCode: String? =
                     registrationUseCases.generateRegistration(imeiString, serialString)
+                Log.d(
+                    "RegisterApp",
+                    "Serial: $serialString || Imei: $imeiString || RegCode: $orgCode"
+                )
+
                 if (!orgCode.isNullOrEmpty() && userRegCode == orgCode) {
                     registrationUseCases.insertRegistration(
                         Registration(

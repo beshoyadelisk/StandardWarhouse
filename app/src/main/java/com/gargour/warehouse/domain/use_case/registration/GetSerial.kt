@@ -2,6 +2,7 @@ package com.gargour.warehouse.domain.use_case.registration
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.util.Log
 import com.gargour.warehouse.util.Constants.APP_IDENTIFIER
 
 class GetSerial {

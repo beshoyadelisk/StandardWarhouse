@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.scrollLayout.apply {
             receiveLinear.setOnClickListener {
+
                 val action = HomeFragmentDirections.actionHomeFragmentToDestinationFragment(
                     Destination.SupplierDestination
                 )

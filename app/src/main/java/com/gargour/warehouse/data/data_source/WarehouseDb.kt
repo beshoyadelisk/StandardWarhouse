@@ -6,8 +6,14 @@ import com.gargour.warehouse.domain.model.*
 
 
 @Database(
-    entities = [Registration::class, User::class, Customer::class,
-        Supplier::class, Warehouse::class],
+    entities = [
+        Registration::class,
+        User::class,
+        Customer::class,
+        Supplier::class,
+        Warehouse::class,
+        Order::class
+    ],
     version = 1
 )
 abstract class WarehouseDb : RoomDatabase() {
@@ -16,6 +22,7 @@ abstract class WarehouseDb : RoomDatabase() {
     abstract val customerDao: CustomerDao
     abstract val supplierDao: SupplierDao
     abstract val warehouseDao: WarehouseDao
+    abstract val orderDao: OrderDao
 
     companion object {
         const val DATABASE_NAME = "Warehouse.db"

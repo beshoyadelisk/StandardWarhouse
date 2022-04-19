@@ -6,14 +6,17 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.gargour.warehouse.data.data_source.WarehouseDb
 import com.gargour.warehouse.data.repository.CustomerRepositoryImpl
+import com.gargour.warehouse.data.repository.OrderRepositoryImpl
 import com.gargour.warehouse.data.repository.SupplierRepositoryImpl
-import com.gargour.warehouse.data.repository.UserRepositoryImpl
 import com.gargour.warehouse.data.repository.WarehouseRepositoryImpl
 import com.gargour.warehouse.domain.repository.CustomerRepository
+import com.gargour.warehouse.domain.repository.OrderRepository
 import com.gargour.warehouse.domain.repository.SupplierRepository
-import com.gargour.warehouse.domain.repository.UserRepository
 import com.gargour.warehouse.domain.repository.WarehouseRepository
 import com.gargour.warehouse.domain.use_case.destination.DestinationUseCase
+import com.gargour.warehouse.domain.use_case.order.CreateOrder
+import com.gargour.warehouse.domain.use_case.order.GetOrders
+import com.gargour.warehouse.domain.use_case.order.OrderUseCases
 import com.gargour.warehouse.util.DispatcherProvider
 import dagger.Module
 import dagger.Provides
@@ -43,6 +46,18 @@ class AppModule {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             db.execSQL("INSERT INTO USER VALUES ('$USERNAME','$USERNAME')")
+            db.execSQL("INSERT INTO Supplier VALUES ('123','supplier1')")
+            db.execSQL("INSERT INTO Supplier VALUES ('342','supplier2')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3421','supplier3')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3422','supplier4')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3423','supplier5')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3424','supplier6')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3425','supplier7')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3426','supplier8')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3427','supplier9')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3428','supplier10')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3429','supplier11')")
+            db.execSQL("INSERT INTO Supplier VALUES ('3420','supplier12')")
         }
     }
 
@@ -79,6 +94,12 @@ class AppModule {
 
     @Provides
     @Singleton
+    fun provideOrderRepository(db: WarehouseDb): OrderRepository {
+        return OrderRepositoryImpl(db.orderDao)
+    }
+
+    @Provides
+    @Singleton
     fun providesDestinationUseCases(
         customerRepository: CustomerRepository,
         supplierRepository: SupplierRepository,
@@ -91,5 +112,15 @@ class AppModule {
         )
     }
 
+    @Provides
+    @Singleton
+    fun providesOrderUseCases(
+        orderRepository: OrderRepository
+    ): OrderUseCases {
+        return OrderUseCases(
+            getOrders = GetOrders(orderRepository),
+            createOrder = CreateOrder(orderRepository)
+        )
+    }
 
 }

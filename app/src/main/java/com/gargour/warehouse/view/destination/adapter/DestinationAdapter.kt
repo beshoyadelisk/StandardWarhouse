@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gargour.warehouse.R
-import com.gargour.warehouse.domain.model.IDestination
 import com.gargour.warehouse.databinding.LayoutDestinationBinding
 import com.gargour.warehouse.domain.model.Customer
+import com.gargour.warehouse.domain.model.IDestination
 import com.gargour.warehouse.domain.model.Supplier
 import com.gargour.warehouse.domain.model.Warehouse
 

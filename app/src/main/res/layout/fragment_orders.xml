@@ -21,15 +21,14 @@
             android:layout_height="wrap_content"
             app:contentScrim="@color/colorMainDark"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="Select Destination">
+            app:title="@string/orders">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:contentDescription="@string/logo"
-                android:padding="16dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/destination"
+                android:padding="30dp"
+                android:src="@drawable/orders_list"
                 app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
@@ -44,28 +43,40 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDestination"
+        android:id="@+id/rvOrders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/scroll_content_background"
         android:padding="20dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:spanCount="2"
         tools:itemCount="10"
-        tools:listitem="@layout/layout_destination" />
+        tools:listitem="@layout/layout_order" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        app:layout_anchor="@id/rvDestination"
+        app:layout_anchor="@id/rvOrders"
         app:layout_anchorGravity="center" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnNewOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/export"
+        app:backgroundTint="#4190a3"
+        app:elevation="10dp"
+        app:fabSize="normal"
+        app:layout_anchor="@id/rvOrders"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_add"
+        app:tint="@color/white" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

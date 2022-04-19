@@ -24,5 +24,6 @@
     <string name="select_customer">Select Customer</string>
     <string name="select_supplier">Select Supplier</string>
     <string name="select_warehouse">Select Warehouse</string>
+    <string name="orders">Orders</string>
 
 </resources>

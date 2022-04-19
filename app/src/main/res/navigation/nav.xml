@@ -40,8 +40,8 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_destinationFragment"
-            app:destination="@id/destinationFragment" />
+            android:id="@+id/action_homeFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
     </fragment>
     <fragment
         android:id="@+id/destinationFragment"
@@ -49,7 +49,19 @@
         android:label="fragment_destination"
         tools:layout="@layout/fragment_destination" >
         <argument
-            android:name="destinationArg"
-            app:argType="com.gargour.warehouse.domain.model.Destination" />
+            android:name="orderTypeArg"
+            app:argType="com.gargour.warehouse.domain.model.OrderType" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.gargour.warehouse.view.orders.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" >
+        <argument
+            android:name="orderTypeArg"
+            app:argType="com.gargour.warehouse.domain.model.OrderType" />
+        <action
+            android:id="@+id/action_ordersFragment_to_destinationFragment"
+            app:destination="@id/destinationFragment" />
     </fragment>
 </navigation>

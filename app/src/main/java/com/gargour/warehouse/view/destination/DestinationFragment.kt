@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.gargour.warehouse.R
-import com.gargour.warehouse.domain.model.IDestination
 import com.gargour.warehouse.databinding.FragmentDestinationBinding
-import com.gargour.warehouse.domain.model.Destination
+import com.gargour.warehouse.domain.model.IDestination
+import com.gargour.warehouse.domain.model.OrderType
 import com.gargour.warehouse.util.ViewExt.showToast
 import com.gargour.warehouse.view.destination.adapter.DestinationAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,8 +25,7 @@ class DestinationFragment : Fragment(), DestinationAdapter.DestinationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.destination = args.destinationArg
-
+        viewModel.orderType = args.orderTypeArg
     }
 
     override fun onCreateView(
@@ -38,14 +36,16 @@ class DestinationFragment : Fragment(), DestinationAdapter.DestinationListener {
         _binding = FragmentDestinationBinding.inflate(inflater, container, false)
         setTitle()
         initObservers()
+        viewModel.loadDestinations()
         return binding.root
     }
 
     private fun setTitle() {
-        val title = when (args.destinationArg) {
-            is Destination.CustomerDestination -> getString(R.string.select_customer)
-            is Destination.SupplierDestination -> getString(R.string.select_supplier)
-            is Destination.WarehouseDestination -> getString(R.string.select_warehouse)
+        val title = when (args.orderTypeArg) {
+            OrderType.MainToWarehouseTransfer,
+            OrderType.WarehouseToMainTransfer -> getString(R.string.select_warehouse)
+            OrderType.Receive, OrderType.WarehouseToSupplierReturn -> getString(R.string.select_supplier)
+            OrderType.Issue, OrderType.CustomerToWarehouseReturn -> getString(R.string.select_customer)
         }
         binding.toolbarLayout.title = title
     }
@@ -58,7 +58,6 @@ class DestinationFragment : Fragment(), DestinationAdapter.DestinationListener {
 
     private fun updateUi(destinationList: List<IDestination>) {
         adapter = DestinationAdapter(destinationList.toMutableList(), this)
-        binding.rvDestination.layoutManager = LinearLayoutManager(requireContext())
         binding.rvDestination.adapter = adapter
     }
 
