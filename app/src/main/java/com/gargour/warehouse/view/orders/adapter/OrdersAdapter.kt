@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gargour.warehouse.databinding.LayoutOrderBinding
-import com.gargour.warehouse.domain.model.Order
+import com.gargour.warehouse.domain.model.OrderHeader
 
 class OrdersAdapter(
-    private var dataList: MutableList<Order>,
+    private var dataList: MutableList<OrderHeader>,
     private val myListener: OrderListener,
 ) : RecyclerView.Adapter<OrdersAdapter.OrdersAdapterVH>() {
     interface OrderListener {
-        fun onItemClick(order: Order, position: Int)
+        fun onItemClick(orderHeader: OrderHeader, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersAdapterVH {
@@ -36,12 +36,13 @@ class OrdersAdapter(
     ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
         init {
-            this.binding.root.setOnClickListener(this)
+            this.binding.orderLayout.setOnClickListener(this)
         }
 
-        fun setData(order: Order) {
-            binding.tvOrderCode.text = order.id.toString()
-            binding.tvOrderDate.text = order.date.toString()
+        fun setData(orderHeader: OrderHeader) {
+            binding.tvOrderCode.text = orderHeader.id.toString()
+            binding.tvOrderDate.text = orderHeader.date
+            binding.tvDestinationName.text = orderHeader.typeId
         }
 
         override fun onClick(v: View) {

@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
-@Entity
+@Entity(tableName = "Order_Header")
 @Parcelize
-data class Order(
+data class OrderHeader(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val date: Date,
+    val date: String,
     val typeId: String,
     val type: OrderType
 ) : Parcelable

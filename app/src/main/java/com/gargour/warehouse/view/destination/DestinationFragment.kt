@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gargour.warehouse.R
 import com.gargour.warehouse.databinding.FragmentDestinationBinding
@@ -54,6 +55,7 @@ class DestinationFragment : Fragment(), DestinationAdapter.DestinationListener {
         viewModel.loading.observe(viewLifecycleOwner) { binding.progressBar.visibility = it }
         viewModel.error.observe(viewLifecycleOwner) { showToast(it) }
         viewModel.destinationResponse.observe(viewLifecycleOwner) { updateUi(it) }
+        viewModel.actionResponse.observe(viewLifecycleOwner) { findNavController().navigate(it) }
     }
 
     private fun updateUi(destinationList: List<IDestination>) {
@@ -67,5 +69,6 @@ class DestinationFragment : Fragment(), DestinationAdapter.DestinationListener {
     }
 
     override fun onItemClick(destination: IDestination, position: Int) {
+        viewModel.createOrder(destination)
     }
 }

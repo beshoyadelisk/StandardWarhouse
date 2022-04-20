@@ -1,13 +1,15 @@
 package com.gargour.warehouse.view.destination
 
+import android.text.format.DateFormat
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
 import com.gargour.warehouse.data.Response
 import com.gargour.warehouse.domain.model.IDestination
-import com.gargour.warehouse.domain.model.Order
+import com.gargour.warehouse.domain.model.OrderHeader
 import com.gargour.warehouse.domain.model.OrderType
 import com.gargour.warehouse.domain.use_case.destination.DestinationUseCase
 import com.gargour.warehouse.domain.use_case.order.OrderUseCases
@@ -32,6 +34,9 @@ class DestinationViewModel @Inject constructor(
     private var _destinationResponse = MutableLiveData<List<IDestination>>()
     val destinationResponse: LiveData<List<IDestination>> = _destinationResponse
 
+    private val _actionResponse = MutableLiveData<NavDirections>()
+    val actionResponse: LiveData<NavDirections> get() = _actionResponse
+
     var orderType: OrderType? = null
 
     fun loadDestinations() {
@@ -49,14 +54,21 @@ class DestinationViewModel @Inject constructor(
 
     }
 
-    fun createOrder() {
+    fun createOrder(destination: IDestination) {
         viewModelScope.launch(Dispatchers.IO) {
-            val order = Order(-1, Calendar.getInstance().time, "1", orderType!!)
-            orderUseCases.createOrder().collect { response ->
+            val date = DateFormat.format("yyyy-MM-dd hh:mm:ss a", Date()).toString()
+            val order = OrderHeader(0, date, destination.code, orderType!!)
+            orderUseCases.createOrder(order).collect { response ->
                 when (response) {
                     is Response.Error -> _error.postValue(response.data.toString())
                     is Response.Loading -> _loading.postValue(response.data as Int)
-                    is Response.Success ->
+                    is Response.Success -> {
+                        _actionResponse.postValue(
+                            DestinationFragmentDirections.actionDestinationFragmentToScanFragment(
+                                order
+                            )
+                        )
+                    }
                 }
             }
         }

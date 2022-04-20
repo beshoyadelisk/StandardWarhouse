@@ -41,7 +41,7 @@ class DestinationAdapter(
     ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
         init {
-            this.binding.root.setOnClickListener(this)
+            this.binding.mainLayout.setOnClickListener(this)
         }
 
         fun setData(destination: IDestination) {

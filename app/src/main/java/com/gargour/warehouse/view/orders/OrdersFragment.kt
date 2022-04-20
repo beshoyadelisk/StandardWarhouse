@@ -9,10 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gargour.warehouse.databinding.FragmentOrdersBinding
-import com.gargour.warehouse.domain.model.Order
+import com.gargour.warehouse.domain.model.OrderHeader
 import com.gargour.warehouse.util.ViewExt.showToast
 import com.gargour.warehouse.view.orders.adapter.OrdersAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OrdersFragment : Fragment(), OrdersAdapter.OrderListener {
     private var _binding: FragmentOrdersBinding? = null
     private val binding get() = _binding!!
@@ -42,7 +44,7 @@ class OrdersFragment : Fragment(), OrdersAdapter.OrderListener {
         viewModel.ordersResponse.observe(viewLifecycleOwner) { updateUi(it) }
     }
 
-    private fun updateUi(ordersList: List<Order>) {
+    private fun updateUi(ordersList: List<OrderHeader>) {
         adapter = OrdersAdapter(ordersList.toMutableList(), this)
         binding.rvOrders.adapter = adapter
     }
@@ -52,7 +54,11 @@ class OrdersFragment : Fragment(), OrdersAdapter.OrderListener {
         _binding = null
     }
 
-    override fun onItemClick(order: Order, position: Int) {
-
+    override fun onItemClick(orderHeader: OrderHeader, position: Int) {
+        findNavController().navigate(
+            OrdersFragmentDirections.actionOrdersFragmentToScanFragment(
+                orderHeader
+            )
+        )
     }
 }

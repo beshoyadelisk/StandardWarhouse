@@ -51,6 +51,10 @@
         <argument
             android:name="orderTypeArg"
             app:argType="com.gargour.warehouse.domain.model.OrderType" />
+        <action
+            android:id="@+id/action_destinationFragment_to_scanFragment"
+            app:destination="@id/scanFragment"
+            app:popUpTo="@id/ordersFragment" />
     </fragment>
     <fragment
         android:id="@+id/ordersFragment"
@@ -63,5 +67,17 @@
         <action
             android:id="@+id/action_ordersFragment_to_destinationFragment"
             app:destination="@id/destinationFragment" />
+        <action
+            android:id="@+id/action_ordersFragment_to_scanFragment"
+            app:destination="@id/scanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.gargour.warehouse.view.scan.ScanFragment"
+        android:label="fragment_scan"
+        tools:layout="@layout/fragment_scan" >
+        <argument
+            android:name="OrderHeaderArg"
+            app:argType="com.gargour.warehouse.domain.model.OrderHeader" />
     </fragment>
 </navigation>

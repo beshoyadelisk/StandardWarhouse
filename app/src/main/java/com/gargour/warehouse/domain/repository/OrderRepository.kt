@@ -1,10 +1,10 @@
 package com.gargour.warehouse.domain.repository
 
-import com.gargour.warehouse.domain.model.Order
+import com.gargour.warehouse.domain.model.OrderHeader
 
 interface OrderRepository {
-    suspend fun insert(data: Order)
-    suspend fun delete(data: Order)
-    suspend fun get(id: Int): Order?
-    suspend fun getList(type: String): List<Order?>
+    suspend fun insert(data: OrderHeader): Long
+    suspend fun delete(data: OrderHeader)
+    suspend fun get(id: Int): OrderHeader?
+    suspend fun getList(type: String): List<OrderHeader?>
 }

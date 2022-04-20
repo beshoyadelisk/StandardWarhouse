@@ -11,7 +11,7 @@
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/receiveLinear"
+        android:id="@+id/orderLayout"
         style="@style/mainLiners"
         android:orientation="horizontal">
 
@@ -31,41 +31,59 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
             android:id="@+id/tvOrderCode"
             style="@style/mainTextView"
-            android:layout_width="0dp"
+            android:layout_width="221dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:padding="4dp"
             android:textAlignment="viewStart"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvDestinationName"
+            app:layout_constraintEnd_toEndOf="@+id/tvDestinationName"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvDestinationName"
+            app:layout_constraintTop_toTopOf="@+id/ivDestination"
+            tools:text="Order 1" />
+
+        <TextView
+            android:id="@+id/tvDestinationName"
+            style="@style/mainTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:padding="0dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/hintColor"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/tvOrderDate"
             app:layout_constraintEnd_toEndOf="@+id/tvOrderDate"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tvOrderDate"
-            app:layout_constraintTop_toTopOf="@+id/ivDestination"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Order 1" />
+            app:layout_constraintTop_toBottomOf="@+id/tvOrderCode"
+            tools:text="Supplier 1" />
 
         <TextView
             android:id="@+id/tvOrderDate"
             style="@style/mainTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_weight="0.5"
             android:padding="0dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:textAlignment="viewStart"
             android:textColor="@color/hintColor"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/ivDestination"
             app:layout_constraintEnd_toStartOf="@+id/ivDelete"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_weight="3"
             app:layout_constraintStart_toEndOf="@+id/ivDestination"
-            app:layout_constraintTop_toBottomOf="@+id/tvOrderCode"
+            app:layout_constraintTop_toBottomOf="@+id/tvDestinationName"
             tools:text="10/05/2022" />
 
         <ImageView

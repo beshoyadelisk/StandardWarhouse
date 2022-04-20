@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gargour.warehouse.databinding.FragmentHomeBinding
-import com.gargour.warehouse.domain.model.Destination
+import com.gargour.warehouse.domain.model.OrderType
 import com.gargour.warehouse.util.ViewExt.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,16 +29,14 @@ class HomeFragment : Fragment() {
         binding.scrollLayout.apply {
             receiveLinear.setOnClickListener {
 
-                val action = HomeFragmentDirections.actionHomeFragmentToDestinationFragment(
-                    Destination.SupplierDestination
-                )
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToOrdersFragment(OrderType.Receive)
                 findNavController().navigate(action)
             }
 
             issueLinear.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToDestinationFragment(
-                    Destination.CustomerDestination
-                )
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToOrdersFragment(OrderType.Issue)
                 findNavController().navigate(action)
             }
             transferLinear.setOnClickListener { }

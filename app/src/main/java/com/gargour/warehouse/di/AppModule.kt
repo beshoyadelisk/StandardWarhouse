@@ -5,14 +5,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.gargour.warehouse.data.data_source.WarehouseDb
-import com.gargour.warehouse.data.repository.CustomerRepositoryImpl
-import com.gargour.warehouse.data.repository.OrderRepositoryImpl
-import com.gargour.warehouse.data.repository.SupplierRepositoryImpl
-import com.gargour.warehouse.data.repository.WarehouseRepositoryImpl
-import com.gargour.warehouse.domain.repository.CustomerRepository
-import com.gargour.warehouse.domain.repository.OrderRepository
-import com.gargour.warehouse.domain.repository.SupplierRepository
-import com.gargour.warehouse.domain.repository.WarehouseRepository
+import com.gargour.warehouse.data.repository.*
+import com.gargour.warehouse.domain.repository.*
 import com.gargour.warehouse.domain.use_case.destination.DestinationUseCase
 import com.gargour.warehouse.domain.use_case.order.CreateOrder
 import com.gargour.warehouse.domain.use_case.order.GetOrders
@@ -96,6 +90,18 @@ class AppModule {
     @Singleton
     fun provideOrderRepository(db: WarehouseDb): OrderRepository {
         return OrderRepositoryImpl(db.orderDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOrderDetailsRepository(db: WarehouseDb): OrderDetailsRepository {
+        return OrderDetailsImpl(db.orderDetailsDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideItemRepository(db: WarehouseDb): ItemRepository {
+        return ItemRepositoryImpl(db.itemDao)
     }
 
     @Provides
