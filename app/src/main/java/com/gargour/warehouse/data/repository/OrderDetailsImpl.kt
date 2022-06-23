@@ -12,4 +12,8 @@ class OrderDetailsImpl(private val dao: OrderDetailsDao) : OrderDetailsRepositor
     override suspend fun delete(data: OrderDetails) {
         dao.delete(data)
     }
+
+    override suspend fun getDetails(id: Int): List<OrderDetails> {
+        return dao.getOrderDetail(id)
+    }
 }

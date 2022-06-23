@@ -13,15 +13,26 @@
         <entry key="..\:/Data/Android-Kotlin/StandardWarhouse/app/src/main/res/layout/layout_destination.xml" value="0.33" />
         <entry key="..\:/Data/Android-Kotlin/StandardWarhouse/app/src/main/res/layout/layout_order.xml" value="0.5" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/drawable/back_gradient.xml" value="0.2005" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/drawable/ic_delete.xml" value="0.213" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/drawable/ic_export.xml" value="0.213" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/drawable/ic_import.xml" value="0.2005" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/drawable/ic_log_in.xml" value="0.1975" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/drawable/ripple_effect.xml" value="0.2005" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/drawable/scroll_content_background.xml" value="0.2005" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout-v23/order_detail_layout.xml" value="0.2994791666666667" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/fragment_destination.xml" value="0.30052083333333335" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/fragment_login.xml" value="0.25052083333333336" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/fragment_orders.xml" value="0.2958974358974359" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/fragment_registration.xml" value="0.25052083333333336" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/fragment_scan.xml" value="0.2994791666666667" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/fragment_settings.xml" value="0.30052083333333335" />
         <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/home_scroll_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/layout_destination.xml" value="0.30052083333333335" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/layout_order.xml" value="0.3333333333333333" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/order_detail_layout.xml" value="0.30052083333333335" />
+        <entry key="..\:/Projects/Android/Standard_Apps/2022/Warehouse/app/src/main/res/layout/scan_head_layout.xml" value="0.2994791666666667" />
       </map>
     </option>
   </component>
@@ -30,5 +41,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2994791666666667" />
+      </ProjectState>
+    </option>
   </component>
 </project>

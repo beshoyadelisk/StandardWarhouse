@@ -14,4 +14,5 @@
     <color name="hintColor">#757575</color>
     <color name="progressError">#b22222</color>
     <color name="yellow">#FAE413</color>
+    <color name="blue">#569FFF</color>
 </resources>

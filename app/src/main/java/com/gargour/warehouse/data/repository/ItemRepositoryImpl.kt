@@ -16,4 +16,8 @@ class ItemRepositoryImpl(private val dao: ItemDao) : ItemRepository {
     override suspend fun get(code: String): Item? {
         return dao.getItem(code)
     }
+
+    override suspend fun getList(): List<Item> {
+        return dao.getItems()
+    }
 }

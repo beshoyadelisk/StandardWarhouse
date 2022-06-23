@@ -28,7 +28,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.scrollLayout.apply {
             receiveLinear.setOnClickListener {
-
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToOrdersFragment(OrderType.Receive)
                 findNavController().navigate(action)
@@ -41,7 +40,7 @@ class HomeFragment : Fragment() {
             }
             transferLinear.setOnClickListener { }
             returnsLinear.setOnClickListener { }
-            settingsLinear.setOnClickListener { }
+            settingsLinear.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment()) }
             logOutLinear.setOnClickListener { }
         }
     }

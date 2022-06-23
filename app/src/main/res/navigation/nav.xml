@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_homeFragment_to_ordersFragment"
             app:destination="@id/ordersFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/destinationFragment"
@@ -80,4 +83,9 @@
             android:name="OrderHeaderArg"
             app:argType="com.gargour.warehouse.domain.model.OrderHeader" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.gargour.warehouse.view.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

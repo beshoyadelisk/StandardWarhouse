@@ -12,7 +12,7 @@ import com.gargour.warehouse.domain.model.IDestination
 import com.gargour.warehouse.domain.model.OrderHeader
 import com.gargour.warehouse.domain.model.OrderType
 import com.gargour.warehouse.domain.use_case.destination.DestinationUseCase
-import com.gargour.warehouse.domain.use_case.order.OrderUseCases
+import com.gargour.warehouse.domain.use_case.order.header.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -63,6 +63,8 @@ class DestinationViewModel @Inject constructor(
                     is Response.Error -> _error.postValue(response.data.toString())
                     is Response.Loading -> _loading.postValue(response.data as Int)
                     is Response.Success -> {
+                        val id = response.data as Long
+                        order.id = id.toInt()
                         _actionResponse.postValue(
                             DestinationFragmentDirections.actionDestinationFragmentToScanFragment(
                                 order

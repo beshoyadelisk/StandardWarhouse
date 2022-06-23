@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.gargour.warehouse.R
 import com.gargour.warehouse.databinding.LayoutOrderBinding
 import com.gargour.warehouse.domain.model.OrderHeader
 
@@ -40,7 +41,8 @@ class OrdersAdapter(
         }
 
         fun setData(orderHeader: OrderHeader) {
-            binding.tvOrderCode.text = orderHeader.id.toString()
+            binding.tvOrderCode.text =
+                binding.root.context.getString(R.string.orderNumb, orderHeader.id)
             binding.tvOrderDate.text = orderHeader.date
             binding.tvDestinationName.text = orderHeader.typeId
         }

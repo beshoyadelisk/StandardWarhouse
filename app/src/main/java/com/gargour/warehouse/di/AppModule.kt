@@ -8,9 +8,12 @@ import com.gargour.warehouse.data.data_source.WarehouseDb
 import com.gargour.warehouse.data.repository.*
 import com.gargour.warehouse.domain.repository.*
 import com.gargour.warehouse.domain.use_case.destination.DestinationUseCase
-import com.gargour.warehouse.domain.use_case.order.CreateOrder
-import com.gargour.warehouse.domain.use_case.order.GetOrders
-import com.gargour.warehouse.domain.use_case.order.OrderUseCases
+import com.gargour.warehouse.domain.use_case.order.header.CreateOrder
+import com.gargour.warehouse.domain.use_case.order.header.GetOrders
+import com.gargour.warehouse.domain.use_case.order.header.OrderUseCases
+import com.gargour.warehouse.domain.use_case.settings.SettingsUseCases
+import com.gargour.warehouse.domain.use_case.settings.export.ExportDatabase
+import com.gargour.warehouse.domain.use_case.settings.import.ImportDatabase
 import com.gargour.warehouse.util.DispatcherProvider
 import dagger.Module
 import dagger.Provides
@@ -126,6 +129,15 @@ class AppModule {
         return OrderUseCases(
             getOrders = GetOrders(orderRepository),
             createOrder = CreateOrder(orderRepository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun providesSettingsUseCases(): SettingsUseCases {
+        return SettingsUseCases(
+            importDatabase = ImportDatabase(),
+            exportDatabase = ExportDatabase()
         )
     }
 

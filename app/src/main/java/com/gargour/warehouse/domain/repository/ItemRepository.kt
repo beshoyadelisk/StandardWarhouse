@@ -6,4 +6,6 @@ interface ItemRepository {
     suspend fun insert(data: Item)
     suspend fun delete(data: Item)
     suspend fun get(code: String): Item?
+    suspend fun getList(): List<Item>
+
 }

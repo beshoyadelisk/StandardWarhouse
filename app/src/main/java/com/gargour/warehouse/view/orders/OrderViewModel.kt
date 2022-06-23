@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.gargour.warehouse.data.Response
 import com.gargour.warehouse.domain.model.OrderHeader
 import com.gargour.warehouse.domain.model.OrderType
-import com.gargour.warehouse.domain.use_case.order.OrderUseCases
+import com.gargour.warehouse.domain.use_case.order.header.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect

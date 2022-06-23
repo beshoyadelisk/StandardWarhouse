@@ -1,4 +1,4 @@
-package com.gargour.warehouse.domain.use_case.order
+package com.gargour.warehouse.domain.use_case.order.header
 
 import android.view.View
 import com.gargour.warehouse.data.Response

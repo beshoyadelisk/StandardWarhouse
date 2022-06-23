@@ -4,13 +4,12 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
-import java.util.*
 
 @Entity(tableName = "Order_Header")
 @Parcelize
 data class OrderHeader(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    var id: Int,
     val date: String,
     val typeId: String,
     val type: OrderType
