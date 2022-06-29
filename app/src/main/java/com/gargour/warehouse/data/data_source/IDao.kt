@@ -13,8 +13,7 @@ interface IDao<T> {
     suspend fun update(data: T): Int
 
     @Delete
-    suspend fun delete(data: T)
-
+    suspend fun delete(data: T): Int
 
 
 }

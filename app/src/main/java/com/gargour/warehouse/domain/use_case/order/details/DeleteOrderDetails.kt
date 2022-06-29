@@ -9,11 +9,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onCompletion
 import javax.inject.Inject
 
-class InsertOrderDetails @Inject constructor(private val repository: OrderDetailsRepository) {
+class DeleteOrderDetails @Inject constructor(private val repository: OrderDetailsRepository) {
     operator fun invoke(orderDetails: OrderDetails) = flow {
         emit(Response.Loading(View.VISIBLE))
-        val result = repository.insert(orderDetails)
-        emit(Response.Success(result))
+        val result = repository.delete(orderDetails)
+        if (result >= 1)
+            emit(Response.Success(result))
+        else
+            emit(Response.Error("Failed to delete the selected item"))
     }.catch { emit(Response.Error(it.message ?: "Exception")) }
         .onCompletion { emit(Response.Loading(View.GONE)) }
 }

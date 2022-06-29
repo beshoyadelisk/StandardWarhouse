@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:contentPadding="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/mainTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_destination"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDest1"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/colorMainLight"
+                app:cornerRadius="8dp"
+                app:elevation="16dp"
+                app:icon="@drawable/ic_arrow_up"
+                app:iconGravity="top"
+                app:iconPadding="0dp"
+                app:iconSize="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnDest2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="Destination 1 sadasdas sfsad sfaas " />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDest2"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:paddingTop="16dp"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp"
+                app:elevation="16dp"
+                app:icon="@drawable/ic_arrow_down"
+                app:iconGravity="top"
+                app:iconPadding="0dp"
+                app:iconSize="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnDest1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnDest1"
+                app:layout_constraintTop_toTopOf="@+id/btnDest1"
+                tools:text="Destination 2 sadas" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

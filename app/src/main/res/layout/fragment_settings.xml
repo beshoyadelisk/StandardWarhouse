@@ -44,6 +44,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/settings"
                 android:textColor="@color/white"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/iv_logo"
                 app:layout_constraintStart_toStartOf="@+id/iv_logo"
@@ -88,8 +89,8 @@
                     android:layout_height="wrap_content"
                     android:background="@color/blue"
                     android:contentDescription="@string/export_data"
-                    android:padding="25dp"
-                    android:src="@drawable/ic_export"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_arrow_up"
                     app:tint="@color/yellow" />
 
                 <TextView
@@ -129,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/blue"
                     android:contentDescription="@string/import_data"
-                    android:padding="25dp"
+                    android:padding="20dp"
                     android:src="@drawable/ic_import"
                     app:tint="@color/yellow" />
 

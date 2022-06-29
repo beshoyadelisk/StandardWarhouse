@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Build
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -16,7 +17,7 @@ object RequestPermissionHandler {
         permissions: Array<String>,
         listener: RequestPermissionListener,
     ) {
-
+        Log.d("RequestPermission", "requestPermission start at: ${System.currentTimeMillis()} ")
         if (!needRequestRuntimePermissions()) {
             listener.onSuccess()
             return

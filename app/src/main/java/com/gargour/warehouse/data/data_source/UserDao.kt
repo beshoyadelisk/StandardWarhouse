@@ -1,11 +1,7 @@
 package com.gargour.warehouse.data.data_source
 
 import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy.ABORT
 import androidx.room.Query
-import com.gargour.warehouse.domain.model.Destination
 import com.gargour.warehouse.domain.model.User
 import kotlinx.coroutines.flow.Flow
 

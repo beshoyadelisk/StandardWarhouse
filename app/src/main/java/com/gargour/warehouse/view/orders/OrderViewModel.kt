@@ -1,10 +1,7 @@
 package com.gargour.warehouse.view.orders
 
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.gargour.warehouse.data.Response
 import com.gargour.warehouse.domain.model.OrderHeader
 import com.gargour.warehouse.domain.model.OrderType
@@ -16,7 +13,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class OrderViewModel @Inject constructor(private val orderUseCases: OrderUseCases) : ViewModel() {
+class OrderViewModel @Inject constructor(
+    private val orderUseCases: OrderUseCases,
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
+    private val orderType: OrderType = savedStateHandle["orderTypeArg"]!!
+
     private var _loading = MutableLiveData(View.GONE)
     val loading: LiveData<Int> = _loading
 
@@ -26,7 +28,7 @@ class OrderViewModel @Inject constructor(private val orderUseCases: OrderUseCase
     private var _ordersResponse = MutableLiveData<List<OrderHeader>>()
     val ordersResponse: LiveData<List<OrderHeader>> = _ordersResponse
 
-    fun loadOrders(orderType: OrderType) {
+    fun loadOrders() {
         viewModelScope.launch(Dispatchers.IO) {
             orderUseCases.getOrders(orderType).collect { response ->
                 when (response) {
@@ -38,6 +40,17 @@ class OrderViewModel @Inject constructor(private val orderUseCases: OrderUseCase
         }
     }
 
+    fun deleteOrder(orderHeader: OrderHeader) {
+        viewModelScope.launch(Dispatchers.IO) {
+            orderUseCases.deleteOrder(orderHeader).collect { response ->
+                when (response) {
+                    is Response.Error -> _error.postValue(response.data.toString())
+                    is Response.Loading -> _loading.postValue(response.data as Int)
+                    is Response.Success -> loadOrders()
+                }
+            }
+        }
+    }
 
 
 }

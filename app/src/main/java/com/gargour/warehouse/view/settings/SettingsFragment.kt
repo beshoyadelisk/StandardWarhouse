@@ -31,8 +31,16 @@ class SettingsFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.importResponse.observe(viewLifecycleOwner) { response -> handleImport(response) }
-        viewModel.exportResponse.observe(viewLifecycleOwner) { response -> handleExport(response) }
+        viewModel.importResponse.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                handleImport(it)
+            }
+        }
+        viewModel.exportResponse.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
+                handleExport(it)
+            }
+        }
         viewModel.error.observe(viewLifecycleOwner) { showToast(it) }
     }
 

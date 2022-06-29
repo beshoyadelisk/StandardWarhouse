@@ -1,6 +1,7 @@
 package com.gargour.warehouse.view.scan
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gargour.warehouse.databinding.OrderDetailLayoutBinding
 import com.gargour.warehouse.domain.model.OrderDetails
 
-class ScanAdapter(private val onClick: (OrderDetails) -> Unit) :
+class ScanAdapter(private val onClick: (OrderDetails, View) -> Unit) :
     ListAdapter<OrderDetails, ScanAdapter.DetailsViewHolder>(DetailsDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsViewHolder {
@@ -22,7 +23,6 @@ class ScanAdapter(private val onClick: (OrderDetails) -> Unit) :
     override fun onBindViewHolder(holder: DetailsViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-
 
     object DetailsDiffCallback : DiffUtil.ItemCallback<OrderDetails>() {
         override fun areItemsTheSame(oldItem: OrderDetails, newItem: OrderDetails): Boolean {
@@ -41,8 +41,8 @@ class ScanAdapter(private val onClick: (OrderDetails) -> Unit) :
     }
 
     class DetailsViewHolder(
-        binding: OrderDetailLayoutBinding,
-        val onClick: (OrderDetails) -> Unit
+        val binding: OrderDetailLayoutBinding,
+        val onClick: (OrderDetails, View) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
         private var currentOrderDetails: OrderDetails? = null
@@ -51,11 +51,22 @@ class ScanAdapter(private val onClick: (OrderDetails) -> Unit) :
         private val itemQty = binding.tvQty
 
         init {
-            binding.root.setOnClickListener {
+            binding.constraintLayout2.setOnClickListener { view ->
                 currentOrderDetails?.let {
-                    onClick(it)
+                    onClick(it, view)
                 }
             }
+            binding.btnDelete.setOnClickListener { view ->
+                currentOrderDetails?.let {
+                    onClick(it, view)
+                }
+            }
+            binding.orderLayout.setOnClickListener { view ->
+                currentOrderDetails?.let {
+                    onClick(it, view)
+                }
+            }
+
         }
 
         fun bind(orderDetails: OrderDetails) {

@@ -37,7 +37,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/issueCard"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/receiveLinear"
@@ -77,7 +78,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/receiveCard"
-                app:layout_constraintTop_toTopOf="@+id/receiveCard">
+                app:layout_constraintTop_toTopOf="@+id/receiveCard"
+                tools:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/issueLinear"
@@ -118,7 +120,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/returnsCard"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/receiveCard"
-                app:layout_constraintTop_toBottomOf="@+id/receiveCard">
+                app:layout_constraintTop_toBottomOf="@+id/receiveCard"
+                tools:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/transferLinear"
@@ -155,7 +158,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/issueCard"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/transferCard"
-                app:layout_constraintTop_toTopOf="@+id/transferCard">
+                app:layout_constraintTop_toTopOf="@+id/transferCard"
+                tools:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/returnsLinear"
@@ -186,15 +190,14 @@
                 style="@style/materialCard"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="24dp"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageView"
                 app:layout_constraintEnd_toStartOf="@+id/logOutCard"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/transferCard"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/transferCard">
 
                 <LinearLayout
@@ -226,10 +229,11 @@
                 style="@style/materialCard"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
+                android:layout_marginEnd="16dp"
                 android:elevation="20dp"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/settingsCard"
-                app:layout_constraintEnd_toEndOf="@+id/returnsCard"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/settingsCard"
                 app:layout_constraintTop_toTopOf="@+id/settingsCard">
@@ -263,12 +267,13 @@
                 android:id="@+id/imageView"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
+                android:layout_marginTop="16dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/gt_logo"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView4"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="@+id/settingsCard" />
+                app:layout_constraintStart_toStartOf="@+id/settingsCard"
+                app:layout_constraintTop_toBottomOf="@+id/settingsCard" />
 
             <TextView
                 android:id="@+id/textView4"

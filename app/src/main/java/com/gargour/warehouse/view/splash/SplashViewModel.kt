@@ -1,5 +1,6 @@
 package com.gargour.warehouse.view.splash
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +26,7 @@ class SplashViewModel @Inject constructor(
     val actionResponse: LiveData<NavDirections> get() = _actionResponse
 
     fun getRegistration() {
+        Log.d("SplashViewModel", "getRegistration start at: ${System.currentTimeMillis()} ")
         viewModelScope.launch(Dispatchers.IO) {
             val serial = registrationUseCases.getSerial()
             registrationUseCases.getRegistration(serial).collect { response ->

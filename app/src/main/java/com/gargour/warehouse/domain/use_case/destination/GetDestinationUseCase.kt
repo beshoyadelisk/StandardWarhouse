@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onCompletion
 
-class DestinationUseCase(
+class GetDestinationUseCase(
     private val customerRepository: CustomerRepository,
     private val supplierRepository: SupplierRepository,
     private val warehouseRepository: WarehouseRepository

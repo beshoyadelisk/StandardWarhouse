@@ -68,4 +68,17 @@
         app:layout_anchor="@id/rvDestination"
         app:layout_anchorGravity="center" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnNewDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/export"
+        app:backgroundTint="@color/fab_color"
+        app:elevation="10dp"
+        app:fabSize="normal"
+        app:layout_anchor="@id/rvDestination"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_add"
+        app:tint="@color/white" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

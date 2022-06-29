@@ -1,5 +1,6 @@
 package com.gargour.warehouse.view.scan
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import com.gargour.warehouse.data.Response
@@ -8,6 +9,7 @@ import com.gargour.warehouse.domain.model.OrderDetails
 import com.gargour.warehouse.domain.model.OrderHeader
 import com.gargour.warehouse.domain.use_case.item.LoadItems
 import com.gargour.warehouse.domain.use_case.item.SearchItems
+import com.gargour.warehouse.domain.use_case.order.details.DeleteOrderDetails
 import com.gargour.warehouse.domain.use_case.order.details.GetOrderDetails
 import com.gargour.warehouse.domain.use_case.order.details.InsertOrderDetails
 import com.gargour.warehouse.util.SingleEvent
@@ -23,10 +25,12 @@ class ScanViewModel @Inject constructor(
     private val searchItems: SearchItems,
     private val getOrderDetails: GetOrderDetails,
     private val insertOrderDetails: InsertOrderDetails,
+    private val deleteOrderDetails: DeleteOrderDetails,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val orderHeader: OrderHeader = savedStateHandle["OrderHeaderArg"]!!
+    private var orderDetailsList: MutableList<OrderDetails> = mutableListOf()
 
     private var _loading = MutableLiveData(View.GONE)
     val loading: LiveData<Int> = _loading
@@ -64,11 +68,15 @@ class ScanViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             getOrderDetails(orderHeader.id).collect { response ->
                 when (response) {
-                    is Response.Error -> _error.postValue(response.message!!)
-                    is Response.Loading -> _loading.postValue(response.data as Int)
+                    is Response.Error -> {
+                        _error.postValue(response.message!!)
+                    }
+                    is Response.Loading -> {
+                        _loading.postValue(response.data as Int)
+                    }
                     is Response.Success -> {
-                        val list = response.data as MutableList<OrderDetails>
-                        _orderDetails.postValue(ArrayList(list))
+                        orderDetailsList = response.data as MutableList<OrderDetails>
+                        _orderDetails.postValue(orderDetailsList)
                     }
                 }
             }
@@ -89,25 +97,69 @@ class ScanViewModel @Inject constructor(
 
     fun addItemToOrderDetails(item: Item, qty: Int = 1) {
         viewModelScope.launch(Dispatchers.IO) {
-            val orderDetailsList = _orderDetails.value!!.toMutableList()
-            val itemIndex = orderDetailsList.indexOfFirst { i -> i.itemCode == item.code }
-            val orderDetails: OrderDetails = if (itemIndex != -1) {
-                val oldItem = orderDetailsList.removeAt(itemIndex)
+            val index = getIndexOf(item.code)
+            val orderDetails: OrderDetails = if (index != -1) {
+                val oldItem = orderDetailsList.removeAt(index)
                 val newItem = oldItem.copy()
                 newItem.qty += qty
-                orderDetailsList.add(itemIndex, newItem)
                 newItem
             } else {
                 OrderDetails(orderHeader.id, item.code, item.name, qty)
             }
-            insertOrderDetails(orderDetails).collect { response ->
-                when (response) {
-                    is Response.Error -> _error.postValue(response.message!!)
-                    is Response.Loading -> _loading.postValue(response.data as Int)
-                    is Response.Success -> loadOrderDetails()
-                }
+            orderDetailsList.add(0, orderDetails)
+            insertDetails(orderDetails, orderDetailsList)
+        }
+    }
+
+
+    fun updateOrderDetail(orderDetails: OrderDetails) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val index = getIndexOf(orderDetails.itemCode)
+            orderDetailsList.removeAt(index)
+            orderDetailsList.add(0, orderDetails)
+            insertDetails(orderDetails, orderDetailsList)
+        }
+    }
+
+    private suspend fun insertDetails(
+        orderDetails: OrderDetails,
+        orderDetailsList: MutableList<OrderDetails>
+    ) {
+        insertOrderDetails(orderDetails).collect { response ->
+            handleReloadData(response, orderDetailsList)
+        }
+    }
+
+    fun delete(orderDetails: OrderDetails) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val index = getIndexOf(orderDetails.itemCode)
+            orderDetailsList.removeAt(index)
+            deleteOrderDetails(orderDetails).collect { response ->
+                handleReloadData(response, orderDetailsList)
             }
         }
+    }
+
+    private fun handleReloadData(
+        response: Response<*>,
+        orderDetailsList: MutableList<OrderDetails>
+    ) {
+        when (response) {
+            is Response.Error -> {
+                _error.postValue(response.message!!)
+            }
+            is Response.Loading -> {
+                _loading.postValue(response.data as Int)
+            }
+            is Response.Success -> {
+                _orderDetails.postValue(orderDetailsList)
+            }
+        }
+    }
+
+    private fun getIndexOf(itemCode: String): Int {
+        orderDetailsList = _orderDetails.value!!
+        return orderDetailsList.indexOfFirst { i -> i.itemCode == itemCode }
     }
 
 }

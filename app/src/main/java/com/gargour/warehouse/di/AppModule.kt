@@ -7,8 +7,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.gargour.warehouse.data.data_source.WarehouseDb
 import com.gargour.warehouse.data.repository.*
 import com.gargour.warehouse.domain.repository.*
-import com.gargour.warehouse.domain.use_case.destination.DestinationUseCase
+import com.gargour.warehouse.domain.use_case.destination.GetDestinationUseCase
 import com.gargour.warehouse.domain.use_case.order.header.CreateOrder
+import com.gargour.warehouse.domain.use_case.order.header.DeleteOrder
 import com.gargour.warehouse.domain.use_case.order.header.GetOrders
 import com.gargour.warehouse.domain.use_case.order.header.OrderUseCases
 import com.gargour.warehouse.domain.use_case.settings.SettingsUseCases
@@ -113,8 +114,8 @@ class AppModule {
         customerRepository: CustomerRepository,
         supplierRepository: SupplierRepository,
         warehouseRepository: WarehouseRepository
-    ): DestinationUseCase {
-        return DestinationUseCase(
+    ): GetDestinationUseCase {
+        return GetDestinationUseCase(
             customerRepository,
             supplierRepository,
             warehouseRepository
@@ -128,7 +129,8 @@ class AppModule {
     ): OrderUseCases {
         return OrderUseCases(
             getOrders = GetOrders(orderRepository),
-            createOrder = CreateOrder(orderRepository)
+            createOrder = CreateOrder(orderRepository),
+            deleteOrder = DeleteOrder(orderRepository)
         )
     }
 

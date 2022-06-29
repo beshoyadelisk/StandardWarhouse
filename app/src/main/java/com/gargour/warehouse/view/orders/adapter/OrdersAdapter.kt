@@ -13,7 +13,7 @@ class OrdersAdapter(
     private val myListener: OrderListener,
 ) : RecyclerView.Adapter<OrdersAdapter.OrdersAdapterVH>() {
     interface OrderListener {
-        fun onItemClick(orderHeader: OrderHeader, position: Int)
+        fun onItemClick(orderHeader: OrderHeader, position: Int, view: View)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersAdapterVH {
@@ -38,6 +38,7 @@ class OrdersAdapter(
 
         init {
             this.binding.orderLayout.setOnClickListener(this)
+            this.binding.ivDelete.setOnClickListener(this)
         }
 
         fun setData(orderHeader: OrderHeader) {
@@ -48,7 +49,7 @@ class OrdersAdapter(
         }
 
         override fun onClick(v: View) {
-            myListener.onItemClick(dataList[adapterPosition], adapterPosition)
+            myListener.onItemClick(dataList[adapterPosition], adapterPosition, v)
         }
 
 

@@ -15,4 +15,5 @@
     <color name="progressError">#b22222</color>
     <color name="yellow">#FAE413</color>
     <color name="blue">#569FFF</color>
+    <color name="fab_color">#4190a3</color>
 </resources>
